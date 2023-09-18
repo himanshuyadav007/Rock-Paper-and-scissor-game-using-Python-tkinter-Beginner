@@ -1,0 +1,36 @@
+#tkinter library used here
+from tkinter import *
+import random
+
+
+def winner(uch, cch):
+    if (uch == cch):
+        return ("It's a TIE!")
+    elif ((uch == 'Rock' and cch == 'Scissor') or (uch == 'Paper' and cch == 'Rock') or (
+            uch == 'Scissorr' and cch == 'Paper')):
+        return ("You Win!")
+    else:
+        return ("Computer Wins!")
+
+
+def play(uch):
+    choices = ['Rock', 'Paper', 'Scissor']
+    cch = random.choice(choices)
+    result = winner(uch, cch)
+    result_label.configure(text=f"Computer chose {cch}. {result}")
+
+
+top = Tk()
+top.title("GAME")
+top.configure(bg='light pink')
+top.geometry("350x300")
+l1 = Label(top, text="WELCOME TO ROCK PAPER SCISSOR GAME!", font=("Courier", 11), bg='yellow').place(x=19, y=30)
+l2 = Label(top, text="Choose from the following buttons ", bg='orange').place(x=70, y=60)
+Button(top, text="Rock", activebackground="green", command=lambda: play("Rock"), bg='powder blue').place(x=140, y=100)
+Button(top, text="Paper", activebackground="green", command=lambda: play("Paper"), bg='powder blue').place(x=140, y=145)
+Button(top, text="Scissor", activebackground="green", command=lambda: play("Scissor"), bg='powder blue').place(x=140,
+                                                                                                               y=190)
+
+result_label = Label(top, text="", bg='black', fg='white')
+result_label.pack(side=BOTTOM)
+top.mainloop()
